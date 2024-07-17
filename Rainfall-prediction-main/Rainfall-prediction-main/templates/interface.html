@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #232F3E;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .navbar a {
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+            border-radius: 4px;
+        }
+        .navbar .left {
+            flex: 1;
+        }
+        .content {
+            padding: 20px;
+            text-align: center;
+            background-color: #F8F8F8;
+        }
+        .content button {
+            background-color: #FF9900;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .content button:hover {
+            background-color: #E68900;
+        }
+        form {
+            background-color: #FFFFFF;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+        form input[type="text"] {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        form input[type="submit"] {
+            background-color: #FF9900;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        form input[type="submit"]:hover {
+            background-color: #E68900;
+        }
+        #weather {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="left">
+            <a href="#home">Mini Project</a>
+        </div>
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#predictor">Predictor</a>
+        <a href="#contact">Contact Us</a>
+    </div>
+    <center><strong>Rainfall Predictor</strong></center>
+    
+    <div class="content">
+        <p>Hello everyone. A very big thank you to y'all from our side for having visited our website. We have worked very hard to make this project a success.
+        We have worked on various rainfall datasets and then come up with this project. We have made use of various ML algorithms and then finally stuck with SV regression and K nearest neighbours. It has been an absolutely wonderful learning curve for us and we can't wait for y'all to see our project. Cheers!</p>
+        <button>Click me!</button>
+    </div>
+    
+    <center>
+        
+        <form method="POST" action="{{ url_for('interface') }}">
+            <b> 
+                Month: <input type="text" name="a" placeholder="enter month"> <br><br>
+                Day: <input type="text" name="b" placeholder="enter day"> <br><br>
+                Temperature Average: <input type="text" name="c" placeholder="enter temperature average"> <br><br>
+                Humidity Average: <input type="text" name="d" placeholder="enter humidity average"> <br><br><br>
+            </b>
+            <input type="submit" value="predict">
+        </form>
+        {% if data is not none %}
+            <h2>Prediction: {{ data }} millimetres</h2>
+            <p>{{ message }}</p>
+        {% endif %}
+        {% if error %}
+            <h2>Error: {{ error }}</h2>
+        {% endif %}
+    </center>
+
+    <div id="weather"></div>
+</body>
+</html>
